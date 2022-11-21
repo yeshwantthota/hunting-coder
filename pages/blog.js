@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Blog.module.css";
 import Link from "next/link";
-const Blog = () => {
+const Blog = (props) => {
+  const [blogs, setBlogs] = useState(props.allBlogs);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <div>
-          <Link href={"/blogpost/learn-javascript"}>
-            <h3 className={styles.blogItemh3}>
-              How to learn JavaScript in 2022?
-            </h3>
-          </Link>
-          <p>JavaScript is the language used to design logic for the web</p>
-        </div>
-        <div className="blogItem">
-          <h3>How to learn javascript int 2022</h3>
-          <p>Javascript is the language used to design logic for the web.</p>
-        </div>
-        <div className="blogItem">
-          <h3>How to learn javascript int 2022</h3>
-          <p>Javascript is the language used to design logic for the web.</p>
-        </div>
+        {blogs.map((blogitem) => {
+          return (
+            <div key={blogitem.slug}>
+              <Link href={`/blogpost/${blogitem.slug}`}>
+                <h3 className={styles.blogItemh3}>{blogitem.title}</h3>
+              </Link>
+              <p className={styles.blogitemp}>
+                {blogitem.content.substr(0, 140)}...
+              </p>
+            </div>
+          );
+        })}
       </main>
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  let data = await fetch("http://localhost:3000/api/blogs");
+  let allBlogs = await data.json();
+  return {
+    props: { allBlogs },
+  };
+}
 
 export default Blog;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+
 import styles from "../styles/Home.module.css";
 export default function Home() {
   return (
@@ -27,7 +27,8 @@ export default function Home() {
             className={styles.myImg}
             src="/homeImg.avif"
             width={237}
-            height={185}
+            height={158}
+            alt="hunting coder"
           />
         </div>
 

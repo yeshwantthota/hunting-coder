@@ -140,10 +140,9 @@
 }
 
 .myImg {
-  width: 277px;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
 .imagewrap {
-  padding: 25px 0px;
+  padding: 30px 0px;
 }

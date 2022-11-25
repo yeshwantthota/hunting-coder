@@ -17,6 +17,9 @@ const Blog = (props) => {
               <p className={styles.blogitemp}>
                 {blogitem.metadesc.substr(0, 140)}...
               </p>
+              <Link href={`/blogpost/${blogitem.slug}`}>
+                <button className={styles.btn}>Read More</button>
+              </Link>
             </div>
           );
         })}

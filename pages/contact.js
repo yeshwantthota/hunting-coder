@@ -53,10 +53,10 @@ const Contact = () => {
             Enter your name
           </label>
           <input
+            className={styles.input}
             type="text"
             value={name}
             onChange={handleChange}
-            className="form-control"
             id="name"
             name="name"
             aria-describedby="emailHelp"
@@ -67,15 +67,15 @@ const Contact = () => {
             Email address
           </label>
           <input
+            className={styles.input}
             type="email"
             value={email}
             onChange={handleChange}
-            className="form-control"
             name="email"
             id="email"
             aria-describedby="emailHelp"
           />
-          <div id="emailHelp" className="form-text">
+          <div id="emailHelp" className={styles.formtext}>
             We'll never share your email with anyone else.
           </div>
         </div>
@@ -84,26 +84,28 @@ const Contact = () => {
             Password
           </label>
           <input
+            className={styles.input}
             type="phone"
             value={phone}
             onChange={handleChange}
-            className="form-control"
             name="phone"
             id="phone"
+            required
           />
         </div>
         <div className={styles.mb3}>
-          <label htmlFor="desc">Elaborate your concern</label>
+          <label className={styles.formlabel} htmlFor="desc">
+            Elaborate your concern
+          </label>
           <textarea
+            className={styles.input}
             value={desc}
             onChange={handleChange}
-            className="form-control"
-            placeholder="Write your concern here"
             name="desc"
             id="desc"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={styles.btn}>
           Submit
         </button>
       </form>

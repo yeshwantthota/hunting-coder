@@ -23,7 +23,7 @@ const Slug = (props) => {
 };
 
 export async function getStaticPaths() {
-  let allb = await fs.promises.readdir("blogdata");
+  let allb = await fs.promises.readdir(`blogdata`);
   allb = allb.map((item) => {
     return { params: { slug: item.split(".")[0] } };
   });

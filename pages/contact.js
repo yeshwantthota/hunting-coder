@@ -76,12 +76,12 @@ const Contact = () => {
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" className={styles.formtext}>
-            We'll never share your email with anyone else.
+            We will never share your email with anyone else.
           </div>
         </div>
         <div className={styles.mb3}>
           <label htmlFor="phone" className={styles.formlabel}>
-            Password
+            Phone
           </label>
           <input
             className={styles.input}

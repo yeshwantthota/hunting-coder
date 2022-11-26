@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import styles from "../../styles/BlogPost.module.css";
+
+import styles from "../../styles/Blogpost.module.css";
 import * as fs from "fs";
 const Slug = (props) => {
   function createMarkup(c) {

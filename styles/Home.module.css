@@ -125,11 +125,13 @@
 
 .mainnav ul {
   display: flex;
-  justify-content: center;
-  margin-top: 50px;
+  justify-content: space-between;
+
+  width: 40%;
+  margin: 30px auto 0 auto;
 }
 .mainnav ul li {
-  margin: 0 24px;
+  /* margin: 0 24px; */
   list-style: none;
   font-weight: bold;
 }
@@ -169,10 +171,18 @@
   margin-top: 3px;
 }
 
-@media only screen and (max-width: 600px) {
-  .mainnav ul li {
-    margin: 0 6px;
+@media (max-width: 1080px) {
+  .mainnav ul {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .mainnav ul {
     list-style: none;
+    width: 70%;
+  }
+  .mainnav ul li {
     font-weight: bold;
   }
 }

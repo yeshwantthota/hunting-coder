@@ -9,7 +9,8 @@ const Blog = (props) => {
   const [count, setCount] = useState(2);
 
   const fetchData = async () => {
-    let d = await fetch(`http://localhost:3000/api/blogs/?count=${count + 2}`);
+    let url = "https://hunting-coder-yesh.vercel.app";
+    let d = await fetch(`${url}/api/blogs/?count=${count + 2}`);
     setCount(count + 2);
     let data = await d.json();
     setBlogs(data);

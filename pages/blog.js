@@ -6,14 +6,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Blog = (props) => {
   const [blogs, setBlogs] = useState(props.allBlogs);
 
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(5);
 
   const fetchData = async () => {
-    let url = "https://hunting-coder-yesh.vercel.app";
-    let d = await fetch(`${url}/api/blogs/?count=${count + 2}`);
-    setCount(count + 2);
-    let data = await d.json();
-    setBlogs(data);
+    // let d = await fetch(`http://localhost:3000/api/blogs/?count=${count}`);
+    setCount(props.allCount - 2);
+    // let data = await d.json();
+
+    setBlogs(props.remBlogs);
   };
   return (
     <div className={styles.container}>
@@ -55,13 +55,19 @@ export async function getStaticProps(context) {
   let allCount = data.length;
   let myfile;
   let allBlogs = [];
+  let remBlogs = [];
   for (let index = 0; index < 2; index++) {
     const item = data[index];
     myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
     allBlogs.push(JSON.parse(myfile));
   }
+  for (let index = 0; index < allCount; index++) {
+    const item = data[index];
+    myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
+    remBlogs.push(JSON.parse(myfile));
+  }
   return {
-    props: { allBlogs, allCount },
+    props: { allBlogs, allCount, remBlogs },
   };
 }
 

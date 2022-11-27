@@ -1,6 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-export default function Home() {
+import * as fs from "fs";
+import Link from "next/link";
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -23,31 +25,47 @@ export default function Home() {
           {" "}
           <span className="dummy">&lt;HuntingCoder/&gt;</span>
         </h1>
+
+        <div className={styles.blogMain}>
+          {props.allBlogs.map((blogitem) => {
+            return (
+              <div key={blogitem.slug}>
+                <Link href={`/blogpost/${blogitem.slug}`}>
+                  <h3 className={styles.blogItemh3}>{blogitem.title}</h3>
+                </Link>
+                <p className={styles.blogItemp}>
+                  {blogitem.metadesc.substr(0, 140)}...
+                </p>
+                <Link href={`/blogpost/${blogitem.slug}`}>
+                  <button className={styles.btn}>Read More</button>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+
         <div>
-          <h2 className={styles.h2}>Latest Blogs</h2>
-          <div>
-            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
-            <p>
-              JavaScript is the language used to design logic for the web. Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Hic error
-              voluptatum impedit!
-            </p>
-            <button className={styles.btn}>Read More</button>
-          </div>
-          <div>
-            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
-            <p className={styles.p}>
-              JavaScript is the language used to design logic for the web
-            </p>
-            <button className={styles.btn}>Read More</button>
-          </div>
-          <div>
-            <h3 className={styles.h3}>How to learn JavaScript in 2022?</h3>
-            <p>JavaScript is the language used to design logic for the web</p>
-            <button className={styles.btn}>Read More</button>
-          </div>
+          <Link href="/blog">
+            <p className={styles.readMore}>More Blogs &gt;&gt;</p>
+          </Link>
         </div>
       </main>
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  let data = await fs.promises.readdir("blogdata");
+
+  let myfile;
+  let allBlogs = [];
+  for (let index = 0; index < 2; index++) {
+    const item = data[index];
+    myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
+    allBlogs.push(JSON.parse(myfile));
+  }
+
+  return {
+    props: { allBlogs },
+  };
 }

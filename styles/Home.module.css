@@ -171,6 +171,22 @@
   margin-top: 3px;
 }
 
+.blogItemh3 {
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.blogItemp {
+  max-width: 45vw;
+}
+.blogMain {
+  margin-top: 3rem;
+}
+.readMore {
+  font-weight: 600;
+}
+
 @media (max-width: 1080px) {
   .mainnav ul {
     width: 70%;
